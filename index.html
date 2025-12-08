@@ -5,173 +5,291 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CS Hyperverse | Decentralized Intelligence</title>
     
-    <!-- Favicon -->
-    <link rel="icon" href="assets/favicon.png" type="image/png">
-
-    <!-- Fonts: Space Grotesk for Tech Look -->
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons: Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* --- CSS START --- */
+        :root {
+            --bg-deep: #030508;
+            --primary: #00f3ff;   /* Cyan Blue */
+            --secondary: #00ff9d; /* Neon Green */
+            --glass: rgba(10, 20, 30, 0.6);
+            --border: rgba(0, 243, 255, 0.2);
+            --font-main: 'Space Grotesk', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-deep);
+            color: #fff;
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        /* Background Canvas */
+        #neural-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -2;
+        }
+        .overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, var(--bg-deep) 90%);
+            z-index: -1;
+        }
+
+        /* Navigation */
+        .hud-nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .brand { font-size: 1.2rem; font-weight: 700; letter-spacing: 2px; color: var(--primary); }
+        .system-status { font-size: 0.9rem; color: #888; display: flex; align-items: center; gap: 10px; }
+        .pulse-dot { width: 8px; height: 8px; background: var(--secondary); border-radius: 50%; box-shadow: 0 0 10px var(--secondary); animation: pulse 2s infinite; }
+        .status-text { color: var(--secondary); }
+
+        /* Dashboard Layout */
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            min-height: 90vh;
+            padding: 40px;
+            gap: 40px;
+            align-items: center;
+        }
+
+        /* Hero Section */
+        .badge { border: 1px solid var(--secondary); color: var(--secondary); display: inline-block; padding: 5px 10px; font-size: 0.7rem; margin-bottom: 20px; letter-spacing: 1px; }
+        .glitch-title { font-size: 3.5rem; line-height: 1; margin-bottom: 20px; background: linear-gradient(90deg, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .description { font-size: 1.1rem; color: #aab; max-width: 600px; line-height: 1.6; margin-bottom: 40px; }
+        .highlight { color: var(--primary); }
+
+        /* Buttons */
+        .control-panel { margin-bottom: 40px; display: flex; gap: 20px; }
+        button { padding: 15px 30px; font-family: var(--font-main); font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; border-radius: 4px; }
+        .btn-primary { background: var(--primary); border: none; color: #000; box-shadow: 0 0 20px rgba(0, 243, 255, 0.4); }
+        .btn-primary:hover { box-shadow: 0 0 40px rgba(0, 243, 255, 0.6); transform: translateY(-2px); }
+        .btn-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: #fff; }
+        .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
+
+        /* Terminal */
+        .terminal-window { background: rgba(0, 0, 0, 0.8); border: 1px solid #333; border-radius: 5px; max-width: 500px; font-family: 'Courier New', monospace; overflow: hidden; }
+        .terminal-header { background: #222; padding: 8px 15px; display: flex; align-items: center; gap: 8px; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+        .terminal-body { padding: 15px; height: 120px; color: var(--secondary); font-size: 0.8rem; }
+
+        /* Profile Section */
+        .profile-section { display: flex; justify-content: center; }
+        .hologram-card { position: relative; width: 350px; background: var(--glass); border: 1px solid var(--border); backdrop-filter: blur(10px); padding: 30px; text-align: center; }
+        .profile-frame { width: 150px; height: 150px; margin: 0 auto 20px; border-radius: 50%; padding: 5px; border: 2px dashed var(--primary); animation: rotateBorder 10s linear infinite; }
+        .profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; filter: sepia(20%) hue-rotate(180deg) saturate(200%); }
+        .hologram-data h2 { font-size: 1.5rem; margin-bottom: 20px; letter-spacing: 2px; }
+        .data-row { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 10px 0; font-size: 0.9rem; color: #888; }
+        .code { color: #fff; font-family: monospace; }
+        .text-green { color: var(--secondary); }
+
+        /* Content Sections */
+        .content-section { padding: 80px 10%; border-top: 1px solid rgba(0, 243, 255, 0.1); background: rgba(0,0,0,0.2); position: relative; z-index: 10; }
+        .section-title { font-size: 2.5rem; color: var(--primary); margin-bottom: 50px; text-align: center; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 15px rgba(0, 243, 255, 0.3); }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .info-card { background: rgba(255,255,255,0.03); padding: 35px; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s ease; border-radius: 5px; }
+        .info-card:hover { border-color: var(--secondary); transform: translateY(-10px); background: rgba(255,255,255,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .info-card i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 25px; }
+        .info-card h3 { margin-bottom: 15px; font-size: 1.4rem; color: #fff; }
+        .info-card p { color: #aaa; line-height: 1.6; }
+
+        /* Footer */
+        .hud-footer { position: relative; width: 100%; display: flex; justify-content: center; gap: 60px; padding: 40px 20px; background: #020305; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 50px; z-index: 100; }
+        .stat-box { text-align: center; }
+        .stat-box .label { display: block; font-size: 0.7rem; color: #666; letter-spacing: 1px; }
+        .stat-box .value { font-size: 1.2rem; font-weight: 700; color: #fff; }
+
+        /* Tech Corners */
+        .tech-corner { position: absolute; width: 20px; height: 20px; border-color: var(--primary); border-style: solid; }
+        .tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+        .tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+        .bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+        .br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+        @keyframes rotateBorder { 100% { transform: rotate(360deg); } }
+
+        @media(max-width: 1024px) {
+            .dashboard-container { grid-template-columns: 1fr; text-align: center; }
+            .profile-section { order: -1; margin-bottom: 30px; }
+            .control-panel { justify-content: center; }
+            .glitch-title { font-size: 2.5rem; }
+        }
+        /* --- CSS END --- */
+    </style>
 </head>
 <body>
 
-    <!-- Background Layer (Neural Network Animation) -->
+    <!-- Background -->
     <canvas id="neural-canvas"></canvas>
     <div class="overlay"></div>
 
-    <!-- Top Navigation (HUD Style) -->
+    <!-- Nav -->
     <nav class="hud-nav">
-        <div class="brand">
-            <i class="fas fa-cube fa-spin-pulse"></i> CS HYPERVERSE
-        </div>
-        <div class="system-status">
-            <span class="pulse-dot"></span> SYSTEM: <span class="status-text">OPTIMAL</span>
-        </div>
+        <div class="brand"><i class="fas fa-cube fa-spin-pulse"></i> CS HYPERVERSE</div>
+        <div class="system-status"><span class="pulse-dot"></span> SYSTEM: <span class="status-text">OPTIMAL</span></div>
     </nav>
 
-    <!-- MAIN DASHBOARD (The "Iron Man" Interface) -->
+    <!-- Dashboard -->
     <main class="dashboard-container">
-        
-        <!-- Left Panel: The Narrative -->
         <section class="hero-section">
             <div class="badge">PHASE 1: ALPHA</div>
-            <h1 class="glitch-title" data-text="SYMBIOTIC SINGULARITY">SYMBIOTIC SINGULARITY</h1>
-            <p class="description">
-                Deploying decentralized neuro-symbolic AI architecture to architect climate resilience for the next billion. 
-                <span class="highlight">Autonomous. Regenerative. Borderless.</span>
-            </p>
-            
+            <h1 class="glitch-title">SYMBIOTIC SINGULARITY</h1>
+            <p class="description">Deploying decentralized neuro-symbolic AI architecture to architect climate resilience for the next billion. <span class="highlight">Autonomous. Regenerative. Borderless.</span></p>
             <div class="control-panel">
-                <button class="btn-primary" onclick="document.getElementById('mission').scrollIntoView({behavior: 'smooth'})">
-                    INITIALIZE PROTOCOL <i class="fas fa-chevron-right"></i>
-                </button>
-                <button class="btn-secondary">
-                    ACCESS WHITE PAPER
-                </button>
+                <button class="btn-primary" onclick="document.getElementById('mission').scrollIntoView({behavior: 'smooth'})">INITIALIZE PROTOCOL <i class="fas fa-chevron-right"></i></button>
+                <button class="btn-secondary">ACCESS WHITE PAPER</button>
             </div>
-
-            <!-- Live Terminal Log -->
             <div class="terminal-window">
-                <div class="terminal-header">
-                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                    <span class="title">sys_log.exe</span>
-                </div>
-                <div class="terminal-body" id="terminal-output">
-                    <!-- JS will inject text here automatically -->
-                </div>
+                <div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="title">sys_log.exe</span></div>
+                <div class="terminal-body" id="terminal-output"></div>
             </div>
         </section>
 
-        <!-- Right Panel: The Commander (Profile Scanner) -->
         <section class="profile-section">
             <div class="hologram-card">
-                <div class="scan-overlay"></div>
                 <div class="profile-frame">
-                    <!-- IMAGE FIX: Make sure your photo is named 'profile.jpg' inside 'assets' folder -->
+                    <!-- PHOTO IS HERE: Make sure 'profiles.jpg' exists in same folder or use 'assets/profile.jpg' if in folder -->
                     <img src="assets/profile.jpg" alt="System Architect" class="profile-img" onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
                 </div>
-                
                 <div class="hologram-data">
                     <h2>SYSTEM ARCHITECT</h2>
-                    <div class="data-row">
-                        <span>ID:</span> <span class="code">ADMIN_01</span>
-                    </div>
-                    <div class="data-row">
-                        <span>CLEARANCE:</span> <span class="code text-green">LEVEL 5</span>
-                    </div>
-                    <div class="data-row">
-                        <span>LOCATION:</span> <span class="code">NEPAL [ENCRYPTED]</span>
-                    </div>
+                    <div class="data-row"><span>ID:</span> <span class="code">ADMIN_01</span></div>
+                    <div class="data-row"><span>CLEARANCE:</span> <span class="code text-green">LEVEL 5</span></div>
+                    <div class="data-row"><span>LOCATION:</span> <span class="code">NEPAL [ENCRYPTED]</span></div>
                 </div>
-
-                <!-- Decorative Tech Corners -->
-                <div class="tech-corner tl"></div>
-                <div class="tech-corner tr"></div>
-                <div class="tech-corner bl"></div>
-                <div class="tech-corner br"></div>
+                <div class="tech-corner tl"></div><div class="tech-corner tr"></div><div class="tech-corner bl"></div><div class="tech-corner br"></div>
             </div>
         </section>
-
     </main>
 
-    <!-- === SCROLLABLE CONTENT SECTIONS (THE REAL PURPOSE) === -->
-    
-    <!-- Section 1: Core Mission -->
+    <!-- Mission Section -->
     <section id="mission" class="content-section">
         <h2 class="section-title">The Hidden Mission</h2>
         <div class="grid-3">
-            <div class="info-card">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Protect the Vulnerable</h3>
-                <p>Shielding 3 billion people from climate disasters using decentralized early warning systems that function without internet dependency.</p>
-            </div>
-            <div class="info-card">
-                <i class="fas fa-globe-africa"></i>
-                <h3>Decolonize Tech</h3>
-                <p>Building technology IN emerging economies, FOR emerging economies. Breaking the monopoly of western big tech on climate data.</p>
-            </div>
-            <div class="info-card">
-                <i class="fas fa-coins"></i>
-                <h3>Climate Wealth</h3>
-                <p>Turning climate adaptation into economic opportunity through regenerative circular economic models and direct carbon credits.</p>
-            </div>
+            <div class="info-card"><i class="fas fa-shield-alt"></i><h3>Protect the Vulnerable</h3><p>Shielding 3 billion people from climate disasters using decentralized early warning systems.</p></div>
+            <div class="info-card"><i class="fas fa-globe-africa"></i><h3>Decolonize Tech</h3><p>Building technology IN emerging economies, FOR emerging economies.</p></div>
+            <div class="info-card"><i class="fas fa-coins"></i><h3>Climate Wealth</h3><p>Turning climate adaptation into economic opportunity through regenerative models.</p></div>
         </div>
     </section>
 
-    <!-- Section 2: Technical Architecture -->
+    <!-- Tech Section -->
     <section class="content-section" style="background: rgba(0, 243, 255, 0.02);">
         <h2 class="section-title">Under The Hood</h2>
         <div class="grid-3">
-            <div class="info-card">
-                <i class="fas fa-brain"></i>
-                <h3>Neuro-Symbolic AI</h3>
-                <p>A hybrid architecture combining Neural Networks (learning) with Symbolic Logic (reasoning) to predict patterns with minimal data.</p>
-            </div>
-            <div class="info-card">
-                <i class="fas fa-broadcast-tower"></i>
-                <h3>Offline Mesh</h3>
-                <p>Our "Trojan Horse" hardware nodes allow devices to communicate via LoRaWAN and SMS when the internet grid fails.</p>
-            </div>
-            <div class="info-card">
-                <i class="fas fa-link"></i>
-                <h3>Trust Protocol</h3>
-                <p>Blockchain-verified transparency ensures aid and resources reach farmers' digital wallets without intermediaries.</p>
-            </div>
+            <div class="info-card"><i class="fas fa-brain"></i><h3>Neuro-Symbolic AI</h3><p>Hybrid architecture combining Neural Networks with Symbolic Logic.</p></div>
+            <div class="info-card"><i class="fas fa-broadcast-tower"></i><h3>Offline Mesh</h3><p>Trojan Horse hardware nodes allow devices to communicate via LoRaWAN.</p></div>
+            <div class="info-card"><i class="fas fa-link"></i><h3>Trust Protocol</h3><p>Blockchain-verified transparency ensures aid reaches farmers directly.</p></div>
         </div>
     </section>
 
-    <!-- Section 3: Call to Action -->
+    <!-- Contact -->
     <section class="content-section" style="text-align: center;">
         <h2 class="section-title">Join the Singularity</h2>
-        <p style="max-width: 600px; margin: 0 auto 30px auto; color: #ccc; font-size: 1.1rem;">
-            We are architecting the last line of defense. Developers, scientists, and partners - the protocol awaits your input.
-        </p>
-        <button class="btn-primary" style="padding: 20px 40px; font-size: 1rem;" onclick="window.location.href='mailto:contact@hyperverse.org'">
-            INITIATE CONTACT <i class="fas fa-envelope-open-text" style="margin-left: 10px;"></i>
-        </button>
+        <p style="max-width: 600px; margin: 0 auto 30px auto; color: #ccc;">We are architecting the last line of defense. The protocol awaits your input.</p>
+        <button class="btn-primary" onclick="window.location.href='mailto:contact@hyperverse.org'">INITIATE CONTACT <i class="fas fa-envelope-open-text"></i></button>
     </section>
 
-    <!-- Footer Stats -->
     <footer class="hud-footer">
-        <div class="stat-box">
-            <span class="label">NODES ACTIVE</span>
-            <span class="value">4,021</span>
-        </div>
-        <div class="stat-box">
-            <span class="label">CARBON OFFSET</span>
-            <span class="value">100%</span>
-        </div>
-        <div class="stat-box">
-            <span class="label">LANGUAGES</span>
-            <span class="value">500+</span>
-        </div>
+        <div class="stat-box"><span class="label">NODES ACTIVE</span><span class="value">4,021</span></div>
+        <div class="stat-box"><span class="label">CARBON OFFSET</span><span class="value">100%</span></div>
+        <div class="stat-box"><span class="label">LANGUAGES</span><span class="value">500+</span></div>
     </footer>
 
-    <!-- Logic Script -->
-    <script src="main.js"></script>
+    <script>
+        /* --- JS START --- */
+        // Canvas Animation
+        const canvas = document.getElementById('neural-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let particles = [];
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.3;
+                this.vy = (Math.random() - 0.5) * 0.3;
+                this.size = Math.random() * 2;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(0, 243, 255, 0.5)';
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+            }
+        }
+
+        function init() {
+            particles = [];
+            const count = window.innerWidth < 768 ? 50 : 100;
+            for (let i = 0; i < count; i++) particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                for (let j = i; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        ctx.strokeStyle = `rgba(0, 243, 255, ${0.1 - dist/1200})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        init();
+        animate();
+
+        // Terminal Effect
+        const terminalOutput = document.getElementById('terminal-output');
+        const logMessages = ["> Initializing Core System...", "> Establishing Satellite Uplink...", "> Fetching Climate Data: Asia/Kathmandu...", "> Encrypting User Nodes...", "> Status: READY."];
+        let msgIndex = 0;
+        function addLog() {
+            if (msgIndex < logMessages.length) {
+                const p = document.createElement('p');
+                p.textContent = logMessages[msgIndex];
+                p.style.opacity = '0'; p.style.marginBottom = '5px';
+                terminalOutput.appendChild(p);
+                setTimeout(() => { p.style.opacity = '1'; }, 100);
+                msgIndex++;
+                setTimeout(addLog, 1500);
+            }
+        }
+        setTimeout(addLog, 1000);
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; init(); });
+        /* --- JS END --- */
+    </script>
 </body>
 </html>
