@@ -13,10 +13,10 @@
         /* --- CSS START --- */
         :root {
             --bg-deep: #030508;
-            --primary: #00f3ff;   /* Cyan Blue */
-            --secondary: #00ff9d; /* Neon Green */
-            --glass: rgba(10, 20, 30, 0.6);
-            --border: rgba(0, 243, 255, 0.2);
+            --primary: #00f3ff;
+            --secondary: #00ff9d;
+            --glass: rgba(10, 20, 30, 0.85);
+            --border: rgba(0, 243, 255, 0.3);
             --font-main: 'Space Grotesk', sans-serif;
         }
 
@@ -27,52 +27,23 @@
             color: #fff;
             font-family: var(--font-main);
             overflow-x: hidden;
-            overflow-y: auto; /* SCROLLING ENABLED */
+            overflow-y: auto;
         }
 
-        /* Background Canvas */
-        #neural-canvas {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: -2;
-        }
-        .overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: radial-gradient(circle at center, transparent 0%, var(--bg-deep) 90%);
-            z-index: -1;
-        }
+        #neural-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, transparent 0%, var(--bg-deep) 90%); z-index: -1; }
 
-        /* Navigation */
-        .hud-nav {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px 40px;
-            border-bottom: 1px solid var(--border);
-            background: rgba(0,0,0,0.3);
-            backdrop-filter: blur(5px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+        /* Nav */
+        .hud-nav { display: flex; justify-content: space-between; padding: 20px 40px; border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; }
         .brand { font-size: 1.2rem; font-weight: 700; letter-spacing: 2px; color: var(--primary); }
         .system-status { font-size: 0.9rem; color: #888; display: flex; align-items: center; gap: 10px; }
         .pulse-dot { width: 8px; height: 8px; background: var(--secondary); border-radius: 50%; box-shadow: 0 0 10px var(--secondary); animation: pulse 2s infinite; }
         .status-text { color: var(--secondary); }
 
-        /* Dashboard Layout */
-        .dashboard-container {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            min-height: 90vh;
-            padding: 40px;
-            gap: 40px;
-            align-items: center;
-        }
+        /* Layout */
+        .dashboard-container { display: grid; grid-template-columns: 1.2fr 0.8fr; min-height: 90vh; padding: 40px; gap: 40px; align-items: center; }
 
-        /* Hero Section */
+        /* Hero */
         .badge { border: 1px solid var(--secondary); color: var(--secondary); display: inline-block; padding: 5px 10px; font-size: 0.7rem; margin-bottom: 20px; letter-spacing: 1px; }
         .glitch-title { font-size: 3.5rem; line-height: 1; margin-bottom: 20px; background: linear-gradient(90deg, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .description { font-size: 1.1rem; color: #aab; max-width: 600px; line-height: 1.6; margin-bottom: 40px; }
@@ -87,13 +58,13 @@
         .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
 
         /* Terminal */
-        .terminal-window { background: rgba(0, 0, 0, 0.8); border: 1px solid #333; border-radius: 5px; max-width: 500px; font-family: 'Courier New', monospace; overflow: hidden; }
+        .terminal-window { background: rgba(0, 0, 0, 0.9); border: 1px solid #333; border-radius: 5px; max-width: 500px; font-family: 'Courier New', monospace; overflow: hidden; }
         .terminal-header { background: #222; padding: 8px 15px; display: flex; align-items: center; gap: 8px; }
-        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; margin-right: 5px;}
         .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
-        .terminal-body { padding: 15px; height: 120px; color: var(--secondary); font-size: 0.8rem; }
+        .terminal-body { padding: 15px; height: 120px; color: var(--secondary); font-size: 0.8rem; overflow-y: auto; }
 
-        /* Profile Section */
+        /* Profile */
         .profile-section { display: flex; justify-content: center; }
         .hologram-card { position: relative; width: 350px; background: var(--glass); border: 1px solid var(--border); backdrop-filter: blur(10px); padding: 30px; text-align: center; }
         .profile-frame { width: 150px; height: 150px; margin: 0 auto 20px; border-radius: 50%; padding: 5px; border: 2px dashed var(--primary); animation: rotateBorder 10s linear infinite; }
@@ -103,15 +74,23 @@
         .code { color: #fff; font-family: monospace; }
         .text-green { color: var(--secondary); }
 
-        /* Content Sections */
+        /* Cards & Grid */
         .content-section { padding: 80px 10%; border-top: 1px solid rgba(0, 243, 255, 0.1); background: rgba(0,0,0,0.2); position: relative; z-index: 10; }
         .section-title { font-size: 2.5rem; color: var(--primary); margin-bottom: 50px; text-align: center; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 15px rgba(0, 243, 255, 0.3); }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .info-card { background: rgba(255,255,255,0.03); padding: 35px; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s ease; border-radius: 5px; }
+        .info-card { background: rgba(255,255,255,0.03); padding: 35px; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s ease; border-radius: 5px; cursor: pointer; }
         .info-card:hover { border-color: var(--secondary); transform: translateY(-10px); background: rgba(255,255,255,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .info-card i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 25px; }
         .info-card h3 { margin-bottom: 15px; font-size: 1.4rem; color: #fff; }
         .info-card p { color: #aaa; line-height: 1.6; }
+
+        /* MODAL POPUP (NEW) */
+        .modal { display: none; position: fixed; z-index: 200; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); backdrop-filter: blur(5px); }
+        .modal-content { background-color: #0a0f14; margin: 10% auto; padding: 40px; border: 1px solid var(--primary); width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 0 30px rgba(0, 243, 255, 0.2); position: relative; animation: modalOpen 0.3s; }
+        .close { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .close:hover { color: var(--primary); }
+        .modal-body h2 { color: var(--primary); margin-bottom: 20px; font-size: 1.8rem; }
+        .modal-body p { color: #ddd; line-height: 1.8; margin-bottom: 15px; }
 
         /* Footer */
         .hud-footer { position: relative; width: 100%; display: flex; justify-content: center; gap: 60px; padding: 40px 20px; background: #020305; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 50px; z-index: 100; }
@@ -128,6 +107,7 @@
 
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
         @keyframes rotateBorder { 100% { transform: rotate(360deg); } }
+        @keyframes modalOpen { from {opacity: 0; transform: translateY(-50px);} to {opacity: 1; transform: translateY(0);} }
 
         @media(max-width: 1024px) {
             .dashboard-container { grid-template-columns: 1fr; text-align: center; }
@@ -156,10 +136,13 @@
             <div class="badge">PHASE 1: ALPHA</div>
             <h1 class="glitch-title">SYMBIOTIC SINGULARITY</h1>
             <p class="description">Deploying decentralized neuro-symbolic AI architecture to architect climate resilience for the next billion. <span class="highlight">Autonomous. Regenerative. Borderless.</span></p>
+            
             <div class="control-panel">
-                <button class="btn-primary" onclick="document.getElementById('mission').scrollIntoView({behavior: 'smooth'})">INITIALIZE PROTOCOL <i class="fas fa-chevron-right"></i></button>
-                <button class="btn-secondary">ACCESS WHITE PAPER</button>
+                <!-- Added onclick functions -->
+                <button class="btn-primary" onclick="initiateProtocol()">INITIALIZE PROTOCOL <i class="fas fa-chevron-right"></i></button>
+                <button class="btn-secondary" onclick="accessWhitepaper()">ACCESS WHITE PAPER</button>
             </div>
+
             <div class="terminal-window">
                 <div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="title">sys_log.exe</span></div>
                 <div class="terminal-body" id="terminal-output"></div>
@@ -169,10 +152,8 @@
         <section class="profile-section">
             <div class="hologram-card">
                 <div class="profile-frame">
-                    
-                    <!-- ✅ HERE IS THE FIX: I put 'Profiles.jpg' directly -->
+                    <!-- KEEP YOUR PROFILE PHOTO NAME HERE -->
                     <img src="Profiles.jpg" alt="System Architect" class="profile-img" onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
-                
                 </div>
                 <div class="hologram-data">
                     <h2>SYSTEM ARCHITECT</h2>
@@ -189,9 +170,15 @@
     <section id="mission" class="content-section">
         <h2 class="section-title">The Hidden Mission</h2>
         <div class="grid-3">
-            <div class="info-card"><i class="fas fa-shield-alt"></i><h3>Protect the Vulnerable</h3><p>Shielding 3 billion people from climate disasters using decentralized early warning systems.</p></div>
-            <div class="info-card"><i class="fas fa-globe-africa"></i><h3>Decolonize Tech</h3><p>Building technology IN emerging economies, FOR emerging economies.</p></div>
-            <div class="info-card"><i class="fas fa-coins"></i><h3>Climate Wealth</h3><p>Turning climate adaptation into economic opportunity through regenerative models.</p></div>
+            <div class="info-card" onclick="openModal('Protection Protocol', 'We deploy 24/7 autonomous monitoring systems that use local sensors and satellite data to provide early warnings for floods, landslides, and droughts. Designed to save lives before disaster strikes.')">
+                <i class="fas fa-shield-alt"></i><h3>Protect the Vulnerable</h3><p>Shielding 3 billion people from climate disasters using decentralized early warning systems.</p>
+            </div>
+            <div class="info-card" onclick="openModal('Tech Decolonization', 'Breaking the dependency on western tech giants. Our systems are open-source, locally hosted, and designed to run on low-cost hardware available in emerging markets.')">
+                <i class="fas fa-globe-africa"></i><h3>Decolonize Tech</h3><p>Building technology IN emerging economies, FOR emerging economies.</p>
+            </div>
+            <div class="info-card" onclick="openModal('Regenerative Economics', 'Farmers are paid directly for carbon sequestration and sustainable practices. Our blockchain layer ensures 100% of the funds reach the community wallet.')">
+                <i class="fas fa-coins"></i><h3>Climate Wealth</h3><p>Turning climate adaptation into economic opportunity through regenerative models.</p>
+            </div>
         </div>
     </section>
 
@@ -199,9 +186,15 @@
     <section class="content-section" style="background: rgba(0, 243, 255, 0.02);">
         <h2 class="section-title">Under The Hood</h2>
         <div class="grid-3">
-            <div class="info-card"><i class="fas fa-brain"></i><h3>Neuro-Symbolic AI</h3><p>Hybrid architecture combining Neural Networks with Symbolic Logic.</p></div>
-            <div class="info-card"><i class="fas fa-broadcast-tower"></i><h3>Offline Mesh</h3><p>Trojan Horse hardware nodes allow devices to communicate via LoRaWAN.</p></div>
-            <div class="info-card"><i class="fas fa-link"></i><h3>Trust Protocol</h3><p>Blockchain-verified transparency ensures aid reaches farmers directly.</p></div>
+            <div class="info-card" onclick="openModal('Neuro-Symbolic AI', 'Unlike standard Deep Learning which is a black box, our AI uses Logic + Learning. It can explain WHY it predicts a flood, making it trustworthy for critical decisions.')">
+                <i class="fas fa-brain"></i><h3>Neuro-Symbolic AI</h3><p>Hybrid architecture combining Neural Networks with Symbolic Logic.</p>
+            </div>
+            <div class="info-card" onclick="openModal('Offline Mesh Network', 'When the internet goes down during a disaster, our nodes create a local LoRaWAN mesh network to keep communities connected and sharing vital data.')">
+                <i class="fas fa-broadcast-tower"></i><h3>Offline Mesh</h3><p>Trojan Horse hardware nodes allow devices to communicate via LoRaWAN.</p>
+            </div>
+            <div class="info-card" onclick="openModal('Trust Protocol', 'Smart contracts automatically release insurance funds when climate triggers (like drought) are met. No paperwork, no waiting, no corruption.')">
+                <i class="fas fa-link"></i><h3>Trust Protocol</h3><p>Blockchain-verified transparency ensures aid reaches farmers directly.</p>
+            </div>
         </div>
     </section>
 
@@ -218,8 +211,21 @@
         <div class="stat-box"><span class="label">LANGUAGES</span><span class="value">500+</span></div>
     </footer>
 
+    <!-- MODAL STRUCTURE -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <h2 id="modalTitle">Title</h2>
+                <p id="modalText">Text</p>
+                <button class="btn-secondary" onclick="closeModal()">ACKNOWLEDGE</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         /* --- JS START --- */
+        // Canvas Animation
         const canvas = document.getElementById('neural-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -273,21 +279,61 @@
         init();
         animate();
 
+        // Terminal & Functions
         const terminalOutput = document.getElementById('terminal-output');
-        const logMessages = ["> Initializing Core System...", "> Establishing Satellite Uplink...", "> Fetching Climate Data: Asia/Kathmandu...", "> Encrypting User Nodes...", "> Status: READY."];
-        let msgIndex = 0;
-        function addLog() {
-            if (msgIndex < logMessages.length) {
-                const p = document.createElement('p');
-                p.textContent = logMessages[msgIndex];
-                p.style.opacity = '0'; p.style.marginBottom = '5px';
-                terminalOutput.appendChild(p);
-                setTimeout(() => { p.style.opacity = '1'; }, 100);
-                msgIndex++;
-                setTimeout(addLog, 1500);
+        
+        function log(message) {
+            const p = document.createElement('p');
+            p.textContent = "> " + message;
+            p.style.color = "#00ff9d";
+            terminalOutput.appendChild(p);
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        }
+
+        // Initial Logs
+        setTimeout(() => log("System Online..."), 500);
+        setTimeout(() => log("Connected to Nepal Node..."), 1200);
+
+        // BUTTON FUNCTIONS
+        function initiateProtocol() {
+            log("INITIATING PROTOCOL...");
+            log("Decrypting layers...");
+            setTimeout(() => {
+                log("ACCESS GRANTED.");
+                document.getElementById('mission').scrollIntoView({behavior: 'smooth'});
+            }, 1000);
+        }
+
+        function accessWhitepaper() {
+            log("Requesting White Paper...");
+            log("Downloading (Encrypted)...");
+            setTimeout(() => {
+                openModal("White Paper Access", "The White Paper contains sensitive architectural data. Currently, it is restricted to Level 5 clearance. Please initiate contact for full access.");
+            }, 1500);
+        }
+
+        // MODAL FUNCTIONS
+        const modal = document.getElementById("infoModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalText = document.getElementById("modalText");
+
+        function openModal(title, text) {
+            modal.style.display = "block";
+            modalTitle.innerText = title;
+            modalText.innerText = text;
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Close modal if clicked outside
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
             }
         }
-        setTimeout(addLog, 1000);
+
         window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; init(); });
         /* --- JS END --- */
     </script>
