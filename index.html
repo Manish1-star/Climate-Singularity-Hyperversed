@@ -4,18 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CS Hyperverse | Decentralized Intelligence</title>
-    <!-- Font: Space Grotesk for Tech Look -->
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+
+    <!-- Fonts: Space Grotesk for Tech Look -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons: Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Background Layer -->
+    <!-- Background Layer (Neural Network Animation) -->
     <canvas id="neural-canvas"></canvas>
     <div class="overlay"></div>
 
-    <!-- Top Navigation (Heads Up Display Style) -->
+    <!-- Top Navigation (HUD Style) -->
     <nav class="hud-nav">
         <div class="brand">
             <i class="fas fa-cube fa-spin-pulse"></i> CS HYPERVERSE
@@ -25,10 +33,10 @@
         </div>
     </nav>
 
-    <!-- Main Interface -->
+    <!-- MAIN DASHBOARD (The "Iron Man" Interface) -->
     <main class="dashboard-container">
         
-        <!-- Left Panel: The Narrative (Trojan Horse) -->
+        <!-- Left Panel: The Narrative -->
         <section class="hero-section">
             <div class="badge">PHASE 1: ALPHA</div>
             <h1 class="glitch-title" data-text="SYMBIOTIC SINGULARITY">SYMBIOTIC SINGULARITY</h1>
@@ -38,7 +46,7 @@
             </p>
             
             <div class="control-panel">
-                <button class="btn-primary">
+                <button class="btn-primary" onclick="document.getElementById('mission').scrollIntoView({behavior: 'smooth'})">
                     INITIALIZE PROTOCOL <i class="fas fa-chevron-right"></i>
                 </button>
                 <button class="btn-secondary">
@@ -46,24 +54,24 @@
                 </button>
             </div>
 
-            <!-- Live Terminal Log (New Pro Feature) -->
+            <!-- Live Terminal Log -->
             <div class="terminal-window">
                 <div class="terminal-header">
                     <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
                     <span class="title">sys_log.exe</span>
                 </div>
                 <div class="terminal-body" id="terminal-output">
-                    <!-- JS will inject text here -->
+                    <!-- JS will inject text here automatically -->
                 </div>
             </div>
         </section>
 
-        <!-- Right Panel: The Commander (Profile) -->
+        <!-- Right Panel: The Commander (Profile Scanner) -->
         <section class="profile-section">
             <div class="hologram-card">
                 <div class="scan-overlay"></div>
                 <div class="profile-frame">
-                    <img src="profiles.jpg" alt="System Architect" ...
+                    <!-- IMAGE FIX: Make sure your photo is named 'profile.jpg' inside 'assets' folder -->
                     <img src="assets/profile.jpg" alt="System Architect" class="profile-img" onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
                 </div>
                 
@@ -80,7 +88,7 @@
                     </div>
                 </div>
 
-                <!-- Decorative Tech Elements -->
+                <!-- Decorative Tech Corners -->
                 <div class="tech-corner tl"></div>
                 <div class="tech-corner tr"></div>
                 <div class="tech-corner bl"></div>
@@ -89,6 +97,63 @@
         </section>
 
     </main>
+
+    <!-- === SCROLLABLE CONTENT SECTIONS (THE REAL PURPOSE) === -->
+    
+    <!-- Section 1: Core Mission -->
+    <section id="mission" class="content-section">
+        <h2 class="section-title">The Hidden Mission</h2>
+        <div class="grid-3">
+            <div class="info-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Protect the Vulnerable</h3>
+                <p>Shielding 3 billion people from climate disasters using decentralized early warning systems that function without internet dependency.</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-globe-africa"></i>
+                <h3>Decolonize Tech</h3>
+                <p>Building technology IN emerging economies, FOR emerging economies. Breaking the monopoly of western big tech on climate data.</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-coins"></i>
+                <h3>Climate Wealth</h3>
+                <p>Turning climate adaptation into economic opportunity through regenerative circular economic models and direct carbon credits.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Technical Architecture -->
+    <section class="content-section" style="background: rgba(0, 243, 255, 0.02);">
+        <h2 class="section-title">Under The Hood</h2>
+        <div class="grid-3">
+            <div class="info-card">
+                <i class="fas fa-brain"></i>
+                <h3>Neuro-Symbolic AI</h3>
+                <p>A hybrid architecture combining Neural Networks (learning) with Symbolic Logic (reasoning) to predict patterns with minimal data.</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-broadcast-tower"></i>
+                <h3>Offline Mesh</h3>
+                <p>Our "Trojan Horse" hardware nodes allow devices to communicate via LoRaWAN and SMS when the internet grid fails.</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-link"></i>
+                <h3>Trust Protocol</h3>
+                <p>Blockchain-verified transparency ensures aid and resources reach farmers' digital wallets without intermediaries.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Call to Action -->
+    <section class="content-section" style="text-align: center;">
+        <h2 class="section-title">Join the Singularity</h2>
+        <p style="max-width: 600px; margin: 0 auto 30px auto; color: #ccc; font-size: 1.1rem;">
+            We are architecting the last line of defense. Developers, scientists, and partners - the protocol awaits your input.
+        </p>
+        <button class="btn-primary" style="padding: 20px 40px; font-size: 1rem;" onclick="window.location.href='mailto:contact@hyperverse.org'">
+            INITIATE CONTACT <i class="fas fa-envelope-open-text" style="margin-left: 10px;"></i>
+        </button>
+    </section>
 
     <!-- Footer Stats -->
     <footer class="hud-footer">
@@ -106,6 +171,7 @@
         </div>
     </footer>
 
+    <!-- Logic Script -->
     <script src="main.js"></script>
 </body>
 </html>
