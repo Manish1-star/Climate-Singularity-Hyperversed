@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS Hyperverse | Phase 1: Activation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Loading Screen (Creating Suspense) -->
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <p>INITIALIZING NEURAL LINK...</p>
+        </div>
+    </div>
+
+    <!-- Dynamic Background -->
+    <canvas id="neural-canvas"></canvas>
+
+    <!-- Main Interface -->
+    <main class="container">
+        
+        <!-- Navigation -->
+        <nav class="glass-nav">
+            <div class="logo">CS <span class="neon-text">HYPERVERSE</span></div>
+            <div class="status-indicator">
+                <span class="dot"></span> SYSTEM ONLINE
+            </div>
+        </nav>
+
+        <!-- Hero Content -->
+        <section class="hero">
+            <div class="content-left">
+                <div class="tagline">> DECRYPTING NATURE'S CODE</div>
+                <h1 class="glitch" data-text="Symbiotic Singularity">Symbiotic Singularity</h1>
+                <p class="mission-text">
+                    Architecting the decentralized AI shield for the next billion. 
+                    Merging <strong>Ancestral Wisdom</strong> with <strong>Quantum Resilience</strong>.
+                </p>
+                
+                <div class="action-grid">
+                    <button class="cy-btn">
+                        <span class="btn-text">INITIATE PROTOCOL</span>
+                        <span class="btn-glitch"></span>
+                    </button>
+                    <div class="stats-mini">
+                        <div><span>500+</span> Languages</div>
+                        <div><span>ZERO</span> Carbon</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- THE PROFILE SECTION (Holographic Style) -->
+            <div class="profile-scanner">
+                <div class="scanner-frame">
+                    <div class="scan-line"></div>
+                    <div class="corner t-l"></div>
+                    <div class="corner t-r"></div>
+                    <div class="corner b-l"></div>
+                    <div class="corner b-r"></div>
+                    
+                    <!-- यहाँ हजुरको फोटो देखिन्छ -->
+                    <div class="profile-img-container">
+                        <!-- 'assets/profile.jpg' मा आफ्नो फोटो राख्नुहोला, नभए यो डिफल्ट आइकन आउँछ -->
+                        <img src="assets/profile.jpg" alt="Commander" onerror="this.src='https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg'">
+                    </div>
+                </div>
+                <div class="profile-data">
+                    <h3>SYSTEM ARCHITECT</h3>
+                    <p>Access Level: <span class="neon-text">ADMIN_ALPHA</span></p>
+                    <div class="data-stream">
+                        <span>Loc: Nepal</span>
+                        <span>Lat: 28.39N</span>
+                        <span>Mode: Stealth</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The "Hidden" Mission Cards (Glassmorphism) -->
+        <section class="modules">
+            <div class="glass-card">
+                <i class="fas fa-shield-alt icon-glow"></i>
+                <h3>Trojan Protocol</h3>
+                <p>Advanced AI interface shielding grassroots localization layers.</p>
+            </div>
+            <div class="glass-card">
+                <i class="fas fa-microchip icon-glow"></i>
+                <h3>Offline AI</h3>
+                <p>Edge computing nodes functioning without internet dependency.</p>
+            </div>
+            <div class="glass-card">
+                <i class="fas fa-hand-holding-heart icon-glow"></i>
+                <h3>Trust Networks</h3>
+                <p>Decentralized human-to-human verification layers.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>
