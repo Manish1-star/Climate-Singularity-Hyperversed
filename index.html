@@ -3,103 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS Hyperverse | Phase 1: Activation</title>
+    <title>CS Hyperverse | Decentralized Intelligence</title>
+    <!-- Font: Space Grotesk for Tech Look -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Loading Screen (Creating Suspense) -->
-    <div id="preloader">
-        <div class="loader-content">
-            <div class="spinner"></div>
-            <p>INITIALIZING NEURAL LINK...</p>
-        </div>
-    </div>
-
-    <!-- Dynamic Background -->
+    <!-- Background Layer -->
     <canvas id="neural-canvas"></canvas>
+    <div class="overlay"></div>
+
+    <!-- Top Navigation (Heads Up Display Style) -->
+    <nav class="hud-nav">
+        <div class="brand">
+            <i class="fas fa-cube fa-spin-pulse"></i> CS HYPERVERSE
+        </div>
+        <div class="system-status">
+            <span class="pulse-dot"></span> SYSTEM: <span class="status-text">OPTIMAL</span>
+        </div>
+    </nav>
 
     <!-- Main Interface -->
-    <main class="container">
+    <main class="dashboard-container">
         
-        <!-- Navigation -->
-        <nav class="glass-nav">
-            <div class="logo">CS <span class="neon-text">HYPERVERSE</span></div>
-            <div class="status-indicator">
-                <span class="dot"></span> SYSTEM ONLINE
-            </div>
-        </nav>
-
-        <!-- Hero Content -->
-        <section class="hero">
-            <div class="content-left">
-                <div class="tagline">> DECRYPTING NATURE'S CODE</div>
-                <h1 class="glitch" data-text="Symbiotic Singularity">Symbiotic Singularity</h1>
-                <p class="mission-text">
-                    Architecting the decentralized AI shield for the next billion. 
-                    Merging <strong>Ancestral Wisdom</strong> with <strong>Quantum Resilience</strong>.
-                </p>
-                
-                <div class="action-grid">
-                    <button class="cy-btn">
-                        <span class="btn-text">INITIATE PROTOCOL</span>
-                        <span class="btn-glitch"></span>
-                    </button>
-                    <div class="stats-mini">
-                        <div><span>500+</span> Languages</div>
-                        <div><span>ZERO</span> Carbon</div>
-                    </div>
-                </div>
+        <!-- Left Panel: The Narrative (Trojan Horse) -->
+        <section class="hero-section">
+            <div class="badge">PHASE 1: ALPHA</div>
+            <h1 class="glitch-title" data-text="SYMBIOTIC SINGULARITY">SYMBIOTIC SINGULARITY</h1>
+            <p class="description">
+                Deploying decentralized neuro-symbolic AI architecture to architect climate resilience for the next billion. 
+                <span class="highlight">Autonomous. Regenerative. Borderless.</span>
+            </p>
+            
+            <div class="control-panel">
+                <button class="btn-primary">
+                    INITIALIZE PROTOCOL <i class="fas fa-chevron-right"></i>
+                </button>
+                <button class="btn-secondary">
+                    ACCESS WHITE PAPER
+                </button>
             </div>
 
-            <!-- THE PROFILE SECTION (Holographic Style) -->
-            <div class="profile-scanner">
-                <div class="scanner-frame">
-                    <div class="scan-line"></div>
-                    <div class="corner t-l"></div>
-                    <div class="corner t-r"></div>
-                    <div class="corner b-l"></div>
-                    <div class="corner b-r"></div>
-                    
-                    <!-- यहाँ हजुरको फोटो देखिन्छ -->
-                    <div class="profile-img-container">
-                        <!-- 'assets/profile.jpg' मा आफ्नो फोटो राख्नुहोला, नभए यो डिफल्ट आइकन आउँछ -->
-                        <img src="assets/profile.jpg" alt="Commander" onerror="this.src='https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg'">
-                    </div>
+            <!-- Live Terminal Log (New Pro Feature) -->
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    <span class="title">sys_log.exe</span>
                 </div>
-                <div class="profile-data">
-                    <h3>SYSTEM ARCHITECT</h3>
-                    <p>Access Level: <span class="neon-text">ADMIN_ALPHA</span></p>
-                    <div class="data-stream">
-                        <span>Loc: Nepal</span>
-                        <span>Lat: 28.39N</span>
-                        <span>Mode: Stealth</span>
-                    </div>
+                <div class="terminal-body" id="terminal-output">
+                    <!-- JS will inject text here -->
                 </div>
             </div>
         </section>
 
-        <!-- The "Hidden" Mission Cards (Glassmorphism) -->
-        <section class="modules">
-            <div class="glass-card">
-                <i class="fas fa-shield-alt icon-glow"></i>
-                <h3>Trojan Protocol</h3>
-                <p>Advanced AI interface shielding grassroots localization layers.</p>
-            </div>
-            <div class="glass-card">
-                <i class="fas fa-microchip icon-glow"></i>
-                <h3>Offline AI</h3>
-                <p>Edge computing nodes functioning without internet dependency.</p>
-            </div>
-            <div class="glass-card">
-                <i class="fas fa-hand-holding-heart icon-glow"></i>
-                <h3>Trust Networks</h3>
-                <p>Decentralized human-to-human verification layers.</p>
+        <!-- Right Panel: The Commander (Profile) -->
+        <section class="profile-section">
+            <div class="hologram-card">
+                <div class="scan-overlay"></div>
+                <div class="profile-frame">
+                    <!-- Replace 'assets/profile.jpg' with your image -->
+                    <img src="assets/profile.jpg" alt="System Architect" class="profile-img" onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                </div>
+                
+                <div class="hologram-data">
+                    <h2>SYSTEM ARCHITECT</h2>
+                    <div class="data-row">
+                        <span>ID:</span> <span class="code">ADMIN_01</span>
+                    </div>
+                    <div class="data-row">
+                        <span>CLEARANCE:</span> <span class="code text-green">LEVEL 5</span>
+                    </div>
+                    <div class="data-row">
+                        <span>LOCATION:</span> <span class="code">NEPAL [ENCRYPTED]</span>
+                    </div>
+                </div>
+
+                <!-- Decorative Tech Elements -->
+                <div class="tech-corner tl"></div>
+                <div class="tech-corner tr"></div>
+                <div class="tech-corner bl"></div>
+                <div class="tech-corner br"></div>
             </div>
         </section>
 
     </main>
+
+    <!-- Footer Stats -->
+    <footer class="hud-footer">
+        <div class="stat-box">
+            <span class="label">NODES ACTIVE</span>
+            <span class="value">4,021</span>
+        </div>
+        <div class="stat-box">
+            <span class="label">CARBON OFFSET</span>
+            <span class="value">100%</span>
+        </div>
+        <div class="stat-box">
+            <span class="label">LANGUAGES</span>
+            <span class="value">500+</span>
+        </div>
+    </footer>
 
     <script src="main.js"></script>
 </body>
