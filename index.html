@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><!-- PWA Manifest Link -->
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#00f3ff">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CS Hyperverse | Decentralized Intelligence</title>
     
+    <!-- PWA Settings (Mobile App Logic) -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#00f3ff">
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+    
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
-    <!-- Nepali Font (Required for Language Switcher) -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- Icons & Map Styles -->
@@ -30,10 +32,9 @@
             --font-nepali: 'Noto Sans Devanagari', sans-serif;
             --bot-msg-bg: rgba(30, 40, 50, 0.8);
             --user-msg-bg: rgba(0, 100, 255, 0.2);
-            --map-filter: grayscale(100%) invert(100%) contrast(1.2); /* Sci-Fi Map Effect */
+            --map-filter: grayscale(100%) invert(100%) contrast(1.2);
         }
 
-        /* Light Mode Variables */
         [data-theme="light"] {
             --bg-deep: #f4f6f8;
             --glass-bg: rgba(255, 255, 255, 0.98);
@@ -47,7 +48,6 @@
             --map-filter: none;
         }
 
-        /* Nepali Mode Styling */
         body.nepali-mode { font-family: var(--font-nepali) !important; }
         body.nepali-mode h1, body.nepali-mode h2, body.nepali-mode button { font-family: var(--font-nepali) !important; font-weight: 700; }
 
@@ -63,7 +63,6 @@
 
         #neural-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; opacity: 0.6; }
         
-        /* Navigation Bar */
         .hud-nav { display: flex; justify-content: space-between; padding: 20px 40px; border-bottom: 1px solid var(--border); background: var(--glass-bg); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; }
         .brand { font-size: 1.2rem; font-weight: 700; letter-spacing: 2px; color: var(--primary); }
         .right-menu { display: flex; gap: 20px; align-items: center; }
@@ -71,30 +70,19 @@
         .nav-btn { cursor: pointer; color: var(--secondary); font-size: 1.2rem; }
         .nav-btn:hover { color: var(--primary); transform: scale(1.1); }
         
-        .lang-btn {
-            border: 1px solid var(--secondary); padding: 5px 10px; border-radius: 4px;
-            font-size: 0.8rem; font-weight: bold; color: var(--secondary); cursor: pointer;
-        }
+        .lang-btn { border: 1px solid var(--secondary); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; color: var(--secondary); cursor: pointer; }
         .lang-btn:hover { background: rgba(0, 255, 157, 0.1); }
 
-        .theme-panel {
-            position: absolute; top: 70px; right: 20px;
-            background: var(--glass-bg); border: 1px solid var(--primary);
-            padding: 15px; border-radius: 8px; display: none;
-            flex-direction: column; gap: 10px; width: 150px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5); z-index: 101;
-        }
+        .theme-panel { position: absolute; top: 70px; right: 20px; background: var(--glass-bg); border: 1px solid var(--primary); padding: 15px; border-radius: 8px; display: none; flex-direction: column; gap: 10px; width: 150px; box-shadow: 0 5px 20px rgba(0,0,0,0.5); z-index: 101; }
         .theme-opt { cursor: pointer; padding: 5px; border-radius: 4px; font-size: 0.9rem; color: var(--text-main); }
         .theme-opt:hover { background: rgba(0,255,255,0.1); color: var(--primary); }
 
-        /* Dashboard Grid */
         .dashboard-container { display: grid; grid-template-columns: 1.2fr 0.8fr; min-height: 90vh; padding: 40px; gap: 40px; align-items: flex-start; }
 
         .badge { border: 1px solid var(--secondary); color: var(--secondary); display: inline-block; padding: 5px 10px; font-size: 0.7rem; margin-bottom: 20px; letter-spacing: 1px; }
         .glitch-title { font-size: 3.5rem; line-height: 1; margin-bottom: 20px; color: var(--text-main); text-shadow: 2px 2px rgba(0, 243, 255, 0.2); }
         .description { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; line-height: 1.6; margin-bottom: 40px; }
         
-        /* Weather Module */
         .weather-module { background: rgba(0,0,0,0.05); border: 1px solid var(--primary); padding: 20px; border-radius: 8px; margin-bottom: 30px; max-width: 500px; }
         .search-box { display: flex; gap: 10px; margin-bottom: 15px; }
         .search-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--text-muted); color: var(--text-main); padding: 10px 15px; font-family: var(--font-main); border-radius: 4px; }
@@ -105,7 +93,6 @@
         .data-item div { font-size: 1.2rem; font-weight: bold; color: var(--text-main); }
         .ai-analysis-box { background: rgba(0, 255, 100, 0.1); border-left: 3px solid var(--primary); padding: 10px; font-size: 0.9rem; color: var(--text-main); font-family: monospace; }
 
-        /* Profile Card */
         .profile-section { display: flex; justify-content: center; }
         .hologram-card { position: relative; width: 350px; background: var(--glass-bg); border: 1px solid var(--border); backdrop-filter: blur(10px); padding: 30px; text-align: center; }
         .profile-frame { width: 150px; height: 150px; margin: 0 auto 20px; border-radius: 50%; padding: 5px; border: 2px dashed var(--primary); animation: rotateBorder 10s linear infinite; }
@@ -114,28 +101,12 @@
         .data-row { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding: 10px 0; font-size: 0.9rem; color: var(--text-muted); }
         .code { color: var(--text-main); font-family: monospace; }
 
-        /* Map Section */
         #live-map-section { padding: 40px; position: relative; }
-        .map-container {
-            height: 500px; width: 100%; border-radius: 10px;
-            border: 1px solid var(--primary); overflow: hidden;
-            position: relative; box-shadow: 0 0 30px rgba(0, 243, 255, 0.1);
-        }
+        .map-container { height: 500px; width: 100%; border-radius: 10px; border: 1px solid var(--primary); overflow: hidden; position: relative; box-shadow: 0 0 30px rgba(0, 243, 255, 0.1); }
         #map { height: 100%; width: 100%; filter: var(--map-filter); z-index: 1; }
-        
-        .map-hud {
-            position: absolute; top: 20px; left: 20px; z-index: 10;
-            background: rgba(0,0,0,0.8); padding: 10px 20px;
-            border-left: 3px solid var(--secondary); color: var(--secondary);
-            font-family: monospace; font-size: 0.9rem;
-        }
-        .scanning-line {
-            position: absolute; top: 0; left: 0; width: 100%; height: 2px;
-            background: var(--secondary); box-shadow: 0 0 10px var(--secondary);
-            animation: scanMap 3s linear infinite; z-index: 5; pointer-events: none;
-        }
+        .map-hud { position: absolute; top: 20px; left: 20px; z-index: 10; background: rgba(0,0,0,0.8); padding: 10px 20px; border-left: 3px solid var(--secondary); color: var(--secondary); font-family: monospace; font-size: 0.9rem; }
+        .scanning-line { position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--secondary); box-shadow: 0 0 10px var(--secondary); animation: scanMap 3s linear infinite; z-index: 5; pointer-events: none; }
 
-        /* Chatbot */
         .chat-toggle-btn { position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px; background: var(--glass-bg); border: 2px solid var(--secondary); border-radius: 50%; color: var(--secondary); font-size: 28px; cursor: pointer; box-shadow: 0 0 20px rgba(0,0,0,0.2); z-index: 200; display: flex; justify-content: center; align-items: center; transition: 0.3s; }
         .chat-toggle-btn:hover { transform: scale(1.1); box-shadow: 0 0 30px var(--secondary); }
         .chat-window { display: none; position: fixed; bottom: 110px; right: 30px; width: 380px; height: 550px; background: var(--glass-bg); border: 1px solid var(--secondary); border-radius: 12px; z-index: 200; flex-direction: column; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.5); animation: slideUp 0.3s; }
@@ -148,7 +119,6 @@
         .chat-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--text-muted); color: var(--text-main); padding: 10px; border-radius: 6px; }
         .send-btn { background: var(--secondary); border: none; padding: 0 15px; font-weight: bold; cursor: pointer; border-radius: 6px; }
 
-        /* Grid */
         .content-section { padding: 80px 10%; border-top: 1px solid var(--border); background: rgba(0,0,0,0.05); }
         .section-title { font-size: 2.5rem; color: var(--primary); margin-bottom: 50px; text-align: center; text-transform: uppercase; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
@@ -158,13 +128,11 @@
         .info-card h3 { margin-bottom: 15px; font-size: 1.4rem; color: var(--text-main); }
         .info-card p { color: var(--text-muted); line-height: 1.6; }
 
-        /* Footer */
         .hud-footer { position: relative; width: 100%; display: flex; justify-content: center; gap: 60px; padding: 40px 20px; background: #000; border-top: 1px solid var(--border); margin-top: 50px; z-index: 100; }
         .stat-box { text-align: center; }
         .stat-box .label { display: block; font-size: 0.7rem; color: #888; letter-spacing: 1px; }
         .stat-box .value { font-size: 1.2rem; font-weight: 700; color: #fff; }
 
-        /* Modal */
         #infoModal { display: none; position: fixed; z-index: 200; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); backdrop-filter: blur(5px); }
         .modal-content { background: var(--glass-bg); margin: 10% auto; padding: 40px; border: 2px solid var(--primary); width: 80%; max-width: 600px; border-radius: 10px; position: relative; }
         .close-btn { color: var(--text-main); float: right; font-size: 28px; cursor: pointer; }
@@ -195,16 +163,12 @@
         <div class="brand"><i class="fas fa-cube fa-spin-pulse"></i> CS HYPERVERSE</div>
         
         <div class="right-menu">
-            <!-- Language Switcher -->
             <div class="lang-btn" onclick="toggleLanguage()">EN | NP</div>
-            
-            <!-- Theme Settings -->
             <i class="fas fa-cog nav-btn" onclick="toggleThemePanel()"></i>
             <div class="theme-panel" id="themePanel">
                 <div class="theme-opt" onclick="setTheme('default')">🌑 Deep Space</div>
                 <div class="theme-opt" onclick="setTheme('light')">☀️ Lab Mode</div>
             </div>
-            
             <div style="font-size:0.9rem; color:#888; display:flex; align-items:center; gap:5px;">
                 <span class="pulse-dot" style="width:8px; height:8px; background:var(--secondary); border-radius:50%;"></span> ONLINE
             </div>
@@ -250,7 +214,6 @@
         </section>
     </main>
 
-    <!-- LIVE MAP SECTION -->
     <section id="live-map-section">
         <h2 class="section-title" id="mapTitle">Active Neural Nodes</h2>
         <div class="map-container">
@@ -264,7 +227,6 @@
         </div>
     </section>
 
-    <!-- Mission Section -->
     <section id="mission" class="content-section">
         <h2 class="section-title" id="missionTitle">The Hidden Mission</h2>
         <div class="grid-3">
@@ -274,7 +236,6 @@
         </div>
     </section>
 
-    <!-- Chatbot -->
     <div class="chat-toggle-btn" onclick="toggleChat()"><i class="fas fa-robot"></i></div>
     <div class="chat-window" id="chatWindow">
         <div class="chat-header">
@@ -290,7 +251,6 @@
         </div>
     </div>
 
-    <!-- Modal -->
     <div id="infoModal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -306,17 +266,20 @@
         <div class="stat-box"><span class="label">LANGUAGES</span><span class="value">500+</span></div>
     </footer>
 
-    <!-- Scripts -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        /* --- JS START --- */
-        
-        // 1. GLOBAL VARIABLES & API
-        let currentLang = 'en';
-        const apiKey = 'face30cd97a1b8feaaef06775dd83931'; // YOUR KEY
+        // PWA Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker Registered!', reg))
+                    .catch(err => console.log('Service Worker Failed!', err));
+            });
+        }
 
-        // 2. LANGUAGE DATA (Required for "EN | NP" button to work)
-        // Note: The text below is Nepali, but it is necessary for the language switch feature.
+        let currentLang = 'en';
+        const apiKey = 'face30cd97a1b8feaaef06775dd83931'; 
+
         const translations = {
             en: {
                 title: "SYMBIOTIC SINGULARITY",
@@ -339,21 +302,16 @@
         function toggleLanguage() {
             currentLang = (currentLang === 'en') ? 'np' : 'en';
             const t = translations[currentLang];
-            
-            // Update Text Elements
             document.getElementById('mainTitle').innerText = t.title;
             document.getElementById('mainDesc').innerText = t.desc;
             document.getElementById('roleTitle').innerText = t.role;
             document.getElementById('mapTitle').innerText = t.map;
             document.getElementById('missionTitle').innerText = t.mission;
             document.getElementById('botIntro').innerText = t.bot;
-
-            // Toggle Font Class
             if(currentLang === 'np') document.body.classList.add('nepali-mode');
             else document.body.classList.remove('nepali-mode');
         }
 
-        // 3. THEME LOGIC
         function toggleThemePanel() {
             const panel = document.getElementById('themePanel');
             panel.style.display = (panel.style.display === 'flex') ? 'none' : 'flex';
@@ -363,42 +321,14 @@
             document.getElementById('themePanel').style.display = 'none';
         }
 
-        // 4. MAP LOGIC (LEAFLET.JS)
         function initMap() {
-            // Set view to Nepal coordinates
             const map = L.map('map').setView([28.3949, 84.1240], 6);
-
-            // Add Map Tiles
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors'
-            }).addTo(map);
-
-            // Custom Green Marker Icon
-            const greenIcon = L.divIcon({
-                className: 'custom-div-icon',
-                html: "<div style='background-color:#00ff9d; width:10px; height:10px; border-radius:50%; box-shadow:0 0 10px #00ff9d;'></div>",
-                iconSize: [10, 10],
-                iconAnchor: [5, 5]
-            });
-
-            // Demo Nodes
-            const nodes = [
-                {lat: 27.7172, lng: 85.3240, name: "Kathmandu HQ"},
-                {lat: 28.2096, lng: 83.9856, name: "Pokhara Node"},
-                {lat: 27.6588, lng: 85.3247, name: "Lalitpur Node"},
-                {lat: 26.4525, lng: 87.2718, name: "Biratnagar Node"},
-                {lat: 29.2995, lng: 82.1768, name: "Jumla Remote Sensor"},
-                {lat: 27.7000, lng: 83.4500, name: "Butwal Agri-Hub"}
-            ];
-
-            nodes.forEach(node => {
-                L.marker([node.lat, node.lng], {icon: greenIcon})
-                 .addTo(map)
-                 .bindPopup(`<b>${node.name}</b><br>Status: ONLINE<br>CO2 Offset: 40t`);
-            });
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
+            const greenIcon = L.divIcon({ className: 'custom-div-icon', html: "<div style='background-color:#00ff9d; width:10px; height:10px; border-radius:50%; box-shadow:0 0 10px #00ff9d;'></div>", iconSize: [10, 10], iconAnchor: [5, 5] });
+            const nodes = [{lat: 27.7172, lng: 85.3240, name: "Kathmandu HQ"}, {lat: 28.2096, lng: 83.9856, name: "Pokhara Node"}, {lat: 29.2995, lng: 82.1768, name: "Jumla Sensor"}];
+            nodes.forEach(node => { L.marker([node.lat, node.lng], {icon: greenIcon}).addTo(map).bindPopup(`<b>${node.name}</b><br>Status: ONLINE`); });
         }
 
-        // 5. WEATHER & CHATBOT INTEGRATION
         async function getWeatherData() {
             const city = document.getElementById('cityInput').value;
             if(!city) { alert("Enter Location"); return; }
@@ -416,7 +346,6 @@
             } catch (error) { alert("City not found."); }
         }
 
-        // Chatbot Logic
         function toggleChat() {
             const win = document.getElementById('chatWindow');
             win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
@@ -431,7 +360,6 @@
             addMessage(text, 'user-msg');
             input.value = '';
 
-            // Detect Weather Queries in Chat
             const cityMatch = text.match(/(?:weather|temperature|temp).*in\s+(\w+)|(\w+)\s+(?:weather|temp)/i);
             if (cityMatch || text.toLowerCase().includes('weather')) {
                 let city = cityMatch ? (cityMatch[1] || cityMatch[2]) : (text.split(" ").length === 1 ? text : null);
@@ -447,7 +375,6 @@
                 }
             }
 
-            // Normal AI Reply
             setTimeout(() => {
                 const reply = getSmartReply(text.toLowerCase());
                 addMessage(reply, 'bot-msg');
@@ -464,18 +391,15 @@
         }
 
         function getSmartReply(text) {
-            // Determine Language for Response
             if (currentLang === 'np') {
                 if (text.includes('hello') || text.includes('namaste')) return "नमस्ते। म तपाईंलाई कसरी सहयोग गर्न सक्छु?";
                 return "म मौसम जाँच गर्न सक्छु। कृपया 'Weather Butwal' टाइप गर्नुहोस्।";
             }
-            // English Responses
             if (text.includes('hello') || text.includes('namaste')) return "Greetings. How can I help?";
             if (text.includes('nepal')) return "Nepal Node: Monitoring 4,000+ micro-climates.";
             return "I can check weather. Type 'Weather Butwal'.";
         }
 
-        // 6. BACKGROUND ANIMATION
         const canvas = document.getElementById('neural-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; canvas.height = window.innerHeight;
@@ -490,23 +414,10 @@
         init(); animate();
         window.addEventListener('resize', ()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;init();});
 
-        // Initialize Map & Modal
         initMap();
         function openModal(title, text) { document.getElementById('modalTitle').innerText = title; document.getElementById('modalText').innerText = text; document.getElementById('infoModal').style.display = "block"; }
         function closeModal() { document.getElementById('infoModal').style.display = "none"; }
         window.onclick = function(e) { if(e.target == document.getElementById('infoModal')) closeModal(); }
-
-        /* --- JS END --- */
     </script>
 </body>
 </html>
-<script>
-    // PWA Service Worker Registration
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('sw.js')
-                .then(reg => console.log('Service Worker Registered!', reg))
-                .catch(err => console.log('Service Worker Failed!', err));
-        });
-    }
-</script>
