@@ -3,472 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS Hyperverse | Decentralized Intelligence</title>
+    <title>Climate Singularity | Professional AI Platform</title>
     
-    <!-- PWA Settings -->
+    <!-- PWA & SEO -->
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#00f3ff">
+    <meta name="theme-color" content="#2563eb">
     <link rel="apple-touch-icon" href="assets/icon-192.png">
 
-    <!-- EmailJS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons & Map Styles -->
+    <!-- Professional Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
     <style>
-        /* --- CSS VARIABLES --- */
+        /* --- 1. PROFESSIONAL CSS VARIABLES (CLEAN THEME) --- */
         :root {
-            --bg-deep: #030508;
-            --glass-bg: rgba(10, 20, 30, 0.95);
-            --primary: #00f3ff;
-            --secondary: #00ff9d;
-            --text-main: #ffffff;
-            --text-muted: #aab;
-            --border: rgba(0, 243, 255, 0.3);
-            --font-main: 'Space Grotesk', sans-serif;
-            --font-nepali: 'Noto Sans Devanagari', sans-serif;
-            --bot-msg-bg: rgba(30, 40, 50, 0.8);
-            --user-msg-bg: rgba(0, 100, 255, 0.2);
-            --map-filter: grayscale(100%) invert(100%) contrast(1.2);
+            --primary: #2563eb; /* Trustworthy Blue */
+            --secondary: #10b981; /* Nature Green */
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --font: 'Inter', sans-serif;
         }
 
-        [data-theme="light"] {
-            --bg-deep: #f4f6f8;
-            --glass-bg: rgba(255, 255, 255, 0.98);
-            --primary: #007bff;
-            --secondary: #008f4c;
-            --text-main: #1a1a1a;
-            --text-muted: #555;
-            --border: #ccc;
-            --bot-msg-bg: #e9ecef;
-            --user-msg-bg: #d1e7dd;
-            --map-filter: none;
-        }
-
-        body.nepali-mode { font-family: var(--font-nepali) !important; }
-        body.nepali-mode h1, body.nepali-mode h2, body.nepali-mode button { font-family: var(--font-nepali) !important; font-weight: 700; }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.3s ease; }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
         body {
-            background-color: var(--bg-deep);
-            color: var(--text-main);
-            font-family: var(--font-main);
-            overflow-x: hidden;
-            overflow-y: auto;
+            font-family: var(--font);
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
         }
 
-        #neural-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; opacity: 0.6; }
+        /* --- 2. NAVIGATION BAR --- */
+        .navbar {
+            background: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+        .logo i { color: var(--secondary); margin-right: 8px; }
         
-        .hud-nav { display: flex; justify-content: space-between; padding: 20px 40px; border-bottom: 1px solid var(--border); background: var(--glass-bg); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; }
-        .brand { font-size: 1.2rem; font-weight: 700; letter-spacing: 2px; color: var(--primary); }
-        .right-menu { display: flex; gap: 20px; align-items: center; }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
         
-        .nav-btn { cursor: pointer; color: var(--secondary); font-size: 1.2rem; }
-        .nav-btn:hover { color: var(--primary); transform: scale(1.1); }
+        .cta-btn {
+            background: var(--primary); color: white; padding: 10px 20px;
+            border-radius: 6px; text-decoration: none; font-weight: 600;
+            transition: 0.3s;
+        }
+        .cta-btn:hover { background: #1d4ed8; }
+
+        /* --- 3. HERO SECTION --- */
+        .hero {
+            text-align: center; padding: 80px 20px;
+            background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; color: var(--dark); }
+        .hero span { color: var(--primary); }
+        .hero p { font-size: 1.2rem; color: #64748b; max-width: 700px; margin: 0 auto 40px; }
+
+        /* --- 4. WEATHER SECTION (CARD STYLE) --- */
+        .section { padding: 60px 10%; }
+        .section-title { text-align: center; margin-bottom: 40px; font-size: 2rem; color: var(--dark); }
         
-        .lang-btn { border: 1px solid var(--secondary); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; color: var(--secondary); cursor: pointer; }
-        .lang-btn:hover { background: rgba(0, 255, 157, 0.1); }
-
-        .theme-panel { position: absolute; top: 70px; right: 20px; background: var(--glass-bg); border: 1px solid var(--primary); padding: 15px; border-radius: 8px; display: none; flex-direction: column; gap: 10px; width: 150px; box-shadow: 0 5px 20px rgba(0,0,0,0.5); z-index: 101; }
-        .theme-opt { cursor: pointer; padding: 5px; border-radius: 4px; font-size: 0.9rem; color: var(--text-main); }
-        .theme-opt:hover { background: rgba(0,255,255,0.1); color: var(--primary); }
-
-        .dashboard-container { display: grid; grid-template-columns: 1.2fr 0.8fr; min-height: 90vh; padding: 40px; gap: 40px; align-items: flex-start; }
-
-        .badge { border: 1px solid var(--secondary); color: var(--secondary); display: inline-block; padding: 5px 10px; font-size: 0.7rem; margin-bottom: 20px; letter-spacing: 1px; }
-        .glitch-title { font-size: 3.5rem; line-height: 1; margin-bottom: 20px; color: var(--text-main); text-shadow: 2px 2px rgba(0, 243, 255, 0.2); }
-        .description { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; line-height: 1.6; margin-bottom: 40px; }
+        .weather-card {
+            background: var(--white); padding: 30px; border-radius: 12px;
+            box-shadow: var(--shadow); max-width: 500px; margin: 0 auto;
+            text-align: center; border-top: 4px solid var(--secondary);
+        }
+        .search-box { display: flex; gap: 10px; margin-bottom: 20px; }
+        .search-input { flex: 1; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; outline: none; }
+        .action-btn { background: var(--dark); color: white; border: none; padding: 0 20px; border-radius: 6px; cursor: pointer; }
         
-        .weather-module { background: rgba(0,0,0,0.05); border: 1px solid var(--primary); padding: 20px; border-radius: 8px; margin-bottom: 30px; max-width: 500px; }
-        .search-box { display: flex; gap: 10px; margin-bottom: 15px; }
-        .search-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--text-muted); color: var(--text-main); padding: 10px 15px; font-family: var(--font-main); border-radius: 4px; }
-        .analyze-btn { background: var(--secondary); border: none; color: #000; padding: 10px 20px; font-weight: bold; cursor: pointer; border-radius: 4px; }
-        .ai-result { display: none; margin-top: 15px; border-top: 1px dashed var(--text-muted); padding-top: 15px; }
-        .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
-        .data-item span { color: var(--text-muted); font-size: 0.8rem; }
-        .data-item div { font-size: 1.2rem; font-weight: bold; color: var(--text-main); }
-        .ai-analysis-box { background: rgba(0, 255, 100, 0.1); border-left: 3px solid var(--primary); padding: 10px; font-size: 0.9rem; color: var(--text-main); font-family: monospace; }
+        .weather-info { display: none; margin-top: 20px; }
+        .temp-display { font-size: 3rem; font-weight: bold; color: var(--dark); }
+        .ai-badge { background: #dcfce7; color: #166534; padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; margin-top: 10px; display: inline-block; }
 
-        .control-panel { margin-bottom: 40px; display: flex; gap: 20px; }
-        button { padding: 15px 30px; font-family: var(--font-main); font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; border-radius: 4px; }
-        .btn-primary { background: var(--primary); border: none; color: #000; box-shadow: 0 0 20px rgba(0, 243, 255, 0.4); }
-        .btn-primary:hover { box-shadow: 0 0 40px rgba(0, 243, 255, 0.6); transform: translateY(-2px); }
-        .btn-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: var(--text-main); }
-        .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
+        /* --- 5. AI CHAT SECTION (Clean UI) --- */
+        .ai-container {
+            background: var(--white); border-radius: 12px; box-shadow: var(--shadow);
+            overflow: hidden; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column;
+            height: 500px; border: 1px solid #e2e8f0;
+        }
+        .chat-header { background: var(--primary); color: white; padding: 15px; font-weight: 600; }
+        .chat-box { flex: 1; padding: 20px; overflow-y: auto; background: #f1f5f9; display: flex; flex-direction: column; gap: 15px; }
+        
+        .msg { padding: 12px 16px; border-radius: 8px; max-width: 80%; font-size: 0.95rem; }
+        .bot { background: var(--white); align-self: flex-start; border: 1px solid #e2e8f0; }
+        .user { background: var(--primary); color: white; align-self: flex-end; }
+        
+        .input-area { padding: 15px; background: white; border-top: 1px solid #e2e8f0; display: flex; gap: 10px; }
 
-        .profile-section { display: flex; justify-content: center; }
-        .hologram-card { position: relative; width: 350px; background: var(--glass-bg); border: 1px solid var(--border); backdrop-filter: blur(10px); padding: 30px; text-align: center; }
-        .profile-frame { width: 150px; height: 150px; margin: 0 auto 20px; border-radius: 50%; padding: 5px; border: 2px dashed var(--primary); animation: rotateBorder 10s linear infinite; }
-        .profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-        .hologram-data h2 { font-size: 1.5rem; margin-bottom: 20px; letter-spacing: 2px; color: var(--text-main); }
-        .data-row { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding: 10px 0; font-size: 0.9rem; color: var(--text-muted); }
-        .code { color: var(--text-main); font-family: monospace; }
+        /* --- 6. MAP SECTION --- */
+        #map { height: 400px; width: 100%; border-radius: 12px; z-index: 1; }
 
-        #live-map-section { padding: 40px; position: relative; }
-        .map-container { height: 500px; width: 100%; border-radius: 10px; border: 1px solid var(--primary); overflow: hidden; position: relative; box-shadow: 0 0 30px rgba(0, 243, 255, 0.1); }
-        #map { height: 100%; width: 100%; filter: var(--map-filter); z-index: 1; }
-        .map-hud { position: absolute; top: 20px; left: 20px; z-index: 10; background: rgba(0,0,0,0.8); padding: 10px 20px; border-left: 3px solid var(--secondary); color: var(--secondary); font-family: monospace; font-size: 0.9rem; }
-        .scanning-line { position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--secondary); box-shadow: 0 0 10px var(--secondary); animation: scanMap 3s linear infinite; z-index: 5; pointer-events: none; }
-
-        .chat-toggle-btn { position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px; background: var(--glass-bg); border: 2px solid var(--secondary); border-radius: 50%; color: var(--secondary); font-size: 28px; cursor: pointer; box-shadow: 0 0 20px rgba(0,0,0,0.2); z-index: 200; display: flex; justify-content: center; align-items: center; transition: 0.3s; }
-        .chat-toggle-btn:hover { transform: scale(1.1); box-shadow: 0 0 30px var(--secondary); }
-        .chat-window { display: none; position: fixed; bottom: 110px; right: 30px; width: 380px; height: 550px; background: var(--glass-bg); border: 1px solid var(--secondary); border-radius: 12px; z-index: 200; flex-direction: column; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.5); animation: slideUp 0.3s; }
-        .chat-header { background: var(--bg-deep); border-bottom: 1px solid var(--secondary); padding: 15px; display: flex; justify-content: space-between; align-items: center; }
-        .chat-header h3 { font-size: 1.1rem; color: var(--text-main); }
-        .chat-body { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
-        .message { padding: 10px 14px; border-radius: 8px; font-size: 0.95rem; max-width: 85%; line-height: 1.5; }
-        .bot-msg { background: var(--bot-msg-bg); border-left: 3px solid var(--secondary); align-self: flex-start; color: var(--text-main); }
-        .user-msg { background: var(--user-msg-bg); border-right: 3px solid var(--primary); align-self: flex-end; color: var(--text-main); text-align: right; }
-        .chat-input-area { padding: 15px; border-top: 1px solid var(--border); display: flex; gap: 10px; background: var(--bg-deep); }
-        .chat-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--text-muted); color: var(--text-main); padding: 10px; border-radius: 6px; }
-        .send-btn { background: var(--secondary); border: none; padding: 0 15px; font-weight: bold; cursor: pointer; border-radius: 6px; }
-
-        .content-section { padding: 80px 10%; border-top: 1px solid var(--border); background: rgba(0,0,0,0.05); }
-        .section-title { font-size: 2.5rem; color: var(--primary); margin-bottom: 50px; text-align: center; text-transform: uppercase; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .info-card { background: var(--glass-bg); padding: 35px; border: 1px solid var(--border); transition: 0.3s ease; border-radius: 5px; cursor: pointer; }
-        .info-card:hover { border-color: var(--secondary); transform: translateY(-10px); }
-        .info-card i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 25px; }
-        .info-card h3 { margin-bottom: 15px; font-size: 1.4rem; color: var(--text-main); }
-        .info-card p { color: var(--text-muted); line-height: 1.6; }
-
-        .hud-footer { position: relative; width: 100%; display: flex; justify-content: center; gap: 60px; padding: 40px 20px; background: #000; border-top: 1px solid var(--border); margin-top: 50px; z-index: 100; }
-        .stat-box { text-align: center; }
-        .stat-box .label { display: block; font-size: 0.7rem; color: #888; letter-spacing: 1px; }
-        .stat-box .value { font-size: 1.2rem; font-weight: 700; color: #fff; }
-
-        #contactModal { display: none; position: fixed; z-index: 201; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); backdrop-filter: blur(10px); }
-        .contact-content { background: var(--glass-bg); margin: 5% auto; padding: 40px; border: 2px solid var(--primary); width: 90%; max-width: 500px; border-radius: 10px; position: relative; }
-        .form-group { margin-bottom: 20px; text-align: left; }
-        .form-group label { display: block; color: var(--secondary); margin-bottom: 5px; font-size: 0.9rem; }
-        .form-control { width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--text-muted); color: var(--text-main); border-radius: 5px; font-family: var(--font-main); }
-        .form-control:focus { outline: none; border-color: var(--primary); }
-
-        #infoModal { display: none; position: fixed; z-index: 200; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); backdrop-filter: blur(5px); }
-        .modal-content { background: var(--glass-bg); margin: 10% auto; padding: 40px; border: 2px solid var(--primary); width: 80%; max-width: 600px; border-radius: 10px; position: relative; }
-        .close-btn { color: var(--text-main); float: right; font-size: 28px; cursor: pointer; }
-
-        .tech-corner { position: absolute; width: 20px; height: 20px; border-color: var(--primary); border-style: solid; }
-        .tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
-        .tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
-        .bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
-        .br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
-
-        @keyframes rotateBorder { 100% { transform: rotate(360deg); } }
-        @keyframes slideUp { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
-        @keyframes slideDown { from {opacity: 0; transform: translateY(-50px);} to {opacity: 1; transform: translateY(0);} }
-        @keyframes scanMap { 0% { top: 0; } 100% { top: 100%; } }
-
-        @media(max-width: 1024px) {
-            .dashboard-container { grid-template-columns: 1fr; text-align: center; }
-            .profile-section { order: -1; margin-bottom: 30px; }
-            .chat-window { width: 95%; right: 2.5%; bottom: 100px; height: 500px; }
+        /* --- 7. FOOTER --- */
+        footer { background: var(--dark); color: white; text-align: center; padding: 40px; margin-top: 50px; }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Simplified for mobile */
+            .hero h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <canvas id="neural-canvas"></canvas>
-
-    <nav class="hud-nav">
-        <div class="brand"><i class="fas fa-cube fa-spin-pulse"></i> CS HYPERVERSE</div>
-        
-        <div class="right-menu">
-            <div class="lang-btn" onclick="toggleLanguage()">EN | NP</div>
-            <i class="fas fa-cog nav-btn" onclick="toggleThemePanel()"></i>
-            <div class="theme-panel" id="themePanel">
-                <div class="theme-opt" onclick="setTheme('default')">🌑 Deep Space</div>
-                <div class="theme-opt" onclick="setTheme('light')">☀️ Lab Mode</div>
-            </div>
-            <div style="font-size:0.9rem; color:#888; display:flex; align-items:center; gap:5px;">
-                <span class="pulse-dot" style="width:8px; height:8px; background:var(--secondary); border-radius:50%;"></span> ONLINE
-            </div>
-        </div>
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="logo"><i class="fas fa-leaf"></i> CS Hyperverse</div>
+        <ul class="nav-links">
+            <li><a href="#weather">Weather</a></li>
+            <li><a href="#ai">AI Oracle</a></li>
+            <li><a href="#map">Live Map</a></li>
+        </ul>
+        <a href="#contact" class="cta-btn">Join Us</a>
     </nav>
 
-    <main class="dashboard-container">
-        <section class="hero-section">
-            <div class="badge">PHASE 2: LIVE BETA</div>
-            <h1 class="glitch-title" id="mainTitle">SYMBIOTIC SINGULARITY</h1>
-            <p class="description" id="mainDesc">Deploying decentralized neuro-symbolic AI architecture to architect climate resilience for the next billion. Autonomous. Regenerative. Borderless.</p>
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <h1>Artificial Intelligence for <br> <span>Climate Resilience</span></h1>
+        <p>A professional platform empowering farmers and communities with real-time data, AI insights, and decentralized technology.</p>
+        <div style="display:flex; justify-content:center; gap:15px;">
+            <button class="cta-btn" onclick="document.getElementById('weather').scrollIntoView()">Try Weather AI</button>
+            <button class="cta-btn" style="background:var(--white); color:var(--dark); border:1px solid #ccc;" onclick="document.getElementById('ai').scrollIntoView()">Chat with AI</button>
+        </div>
+    </header>
+
+    <!-- WEATHER SECTION -->
+    <section id="weather" class="section">
+        <h2 class="section-title">Real-Time Climate Analysis</h2>
+        <div class="weather-card">
+            <div class="search-box">
+                <input type="text" id="cityInput" class="search-input" placeholder="Enter City Name (e.g., Kathmandu)">
+                <button class="action-btn" onclick="getWeather()"><i class="fas fa-search"></i></button>
+            </div>
             
-            <div class="control-panel">
-                <button class="btn-primary" onclick="initiateProtocol()">INITIALIZE PROTOCOL <i class="fas fa-chevron-right"></i></button>
-                <button class="btn-secondary" onclick="openContactModal()">INITIATE CONTACT</button>
+            <!-- Default State -->
+            <div id="weather-placeholder" style="color:#94a3b8;">
+                <i class="fas fa-cloud-sun" style="font-size: 3rem; margin-bottom:10px;"></i>
+                <p>Search a city to see AI analysis.</p>
             </div>
 
-            <div class="weather-module">
-                <div class="search-box">
-                    <input type="text" id="cityInput" class="search-input" placeholder="Enter City (e.g., Kathmandu)">
-                    <button class="analyze-btn" onclick="getWeatherData()">AI ANALYZE</button>
-                </div>
-                <div id="weatherDisplay" class="ai-result">
-                    <h2 id="cityName" style="color:var(--primary); margin-bottom:10px;">Loading...</h2>
-                    <div class="data-grid">
-                        <div class="data-item"><span>TEMP</span><div id="temp">--°C</div></div>
-                        <div class="data-item"><span>HUMIDITY</span><div id="humidity">--%</div></div>
-                        <div class="data-item"><span>WIND</span><div id="wind">-- km/h</div></div>
-                        <div class="data-item"><span>CONDITION</span><div id="condition">--</div></div>
-                    </div>
-                    <div class="ai-analysis-box"><strong>> AI INSIGHT:</strong> <span id="aiInsight">Waiting for data...</span></div>
-                </div>
+            <!-- Result State -->
+            <div id="weatherResult" class="weather-info">
+                <h3 id="cityName">KATHMANDU</h3>
+                <div class="temp-display" id="tempVal">--°C</div>
+                <p id="condition" style="color:#64748b;">Clear Sky</p>
+                <div class="ai-badge"><i class="fas fa-robot"></i> <span id="aiAdvice">Analyzing...</span></div>
             </div>
-        </section>
-
-        <section class="profile-section">
-            <div class="hologram-card">
-                <div class="profile-frame">
-                    <img src="Profiles.jpg" alt="System Architect" class="profile-img" onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
-                </div>
-                <div class="hologram-data">
-                    <h2 id="roleTitle">SYSTEM ARCHITECT</h2>
-                    <div class="data-row"><span>ID:</span> <span class="code">ADMIN_01</span></div>
-                    <div class="data-row"><span>LOCATION:</span> <span class="code">NEPAL [ENCRYPTED]</span></div>
-                </div>
-                <div class="tech-corner tl"></div><div class="tech-corner tr"></div><div class="tech-corner bl"></div><div class="tech-corner br"></div>
-            </div>
-        </section>
-    </main>
-
-    <section id="live-map-section">
-        <h2 class="section-title" id="mapTitle">Active Neural Nodes</h2>
-        <div class="map-container">
-            <div class="map-hud">
-                > SCANNING GLOBAL GRID...<br>
-                > ACTIVE NODES: 4,021<br>
-                > LATENCY: 12ms
-            </div>
-            <div class="scanning-line"></div>
-            <div id="map"></div>
         </div>
     </section>
 
-    <section id="mission" class="content-section">
-        <h2 class="section-title" id="missionTitle">The Hidden Mission</h2>
-        <div class="grid-3">
-            <div class="info-card" onclick="openModal('Protection Protocol', 'We deploy 24/7 autonomous monitoring systems.')"><i class="fas fa-shield-alt"></i><h3>Protect</h3><p>Shielding 3 billion people from climate disasters.</p></div>
-            <div class="info-card" onclick="openModal('Decolonize Tech', 'Breaking dependency on western tech giants.')"><i class="fas fa-globe-africa"></i><h3>Decolonize</h3><p>Building technology IN emerging economies.</p></div>
-            <div class="info-card" onclick="openModal('Climate Wealth', 'Farmers are paid directly via blockchain.')"><i class="fas fa-coins"></i><h3>Prosper</h3><p>Turning climate adaptation into opportunity.</p></div>
+    <!-- AI CHAT SECTION -->
+    <section id="ai" class="section" style="background:#f1f5f9;">
+        <h2 class="section-title">Climate Oracle AI</h2>
+        <p style="text-align:center; margin-bottom:20px; color:#64748b;">Ask anything about farming, weather, or disaster risks.</p>
+        
+        <div class="ai-container">
+            <div class="chat-header"><i class="fas fa-brain"></i> Professional Assistant</div>
+            <div class="chat-box" id="chatBox">
+                <div class="msg bot">Hello! I am your Climate Assistant. How can I help you today?</div>
+            </div>
+            <div class="input-area">
+                <input type="text" id="userMsg" class="search-input" placeholder="Type your question..." onkeypress="handleEnter(event)">
+                <button class="cta-btn" onclick="sendAiMessage()">Send</button>
+            </div>
         </div>
     </section>
 
-    <div class="chat-toggle-btn" onclick="toggleChat()"><i class="fas fa-robot"></i></div>
-    <div class="chat-window" id="chatWindow">
-        <div class="chat-header">
-            <h3><span style="color:#00ff00;">●</span> CLIMATE ORACLE AI</h3>
-            <i class="fas fa-times" onclick="toggleChat()" style="cursor:pointer; color:var(--text-muted);"></i>
-        </div>
-        <div class="chat-body" id="chatBody">
-            <div class="message bot-msg" id="botIntro">
-                <strong>System Online.</strong><br>I am the Real AI Oracle. Ask me about weather, crops, or climate risks in Nepal.
-            </div>
-        </div>
-        <div class="chat-input-area">
-            <input type="text" id="userMsg" class="chat-input" placeholder="Type here..." onkeypress="handleKeyPress(event)">
-            <button class="send-btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
-        </div>
-    </div>
+    <!-- MAP SECTION -->
+    <section id="map" class="section">
+        <h2 class="section-title">Active Monitoring Nodes</h2>
+        <div id="map"></div>
+    </section>
 
-    <div id="infoModal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle">Title</h2>
-            <p id="modalText">Text</p>
-            <br><button class="analyze-btn" onclick="closeModal()">ACKNOWLEDGE</button>
-        </div>
-    </div>
-
-    <div id="contactModal">
-        <div class="contact-content">
-            <span class="close-btn" onclick="closeContactModal()">&times;</span>
-            <h2 style="color:var(--primary); margin-bottom:20px; text-align:center;">SECURE TRANSMISSION</h2>
-            <div class="form-group"><label>NAME</label><input type="text" id="senderName" class="form-control" placeholder="Enter name..."></div>
-            <div class="form-group"><label>EMAIL</label><input type="email" id="senderEmail" class="form-control" placeholder="name@example.com"></div>
-            <div class="form-group"><label>MESSAGE</label><textarea id="senderMessage" class="form-control" rows="4" placeholder="Brief the architect..."></textarea></div>
-            <button class="btn-primary" style="width:100%" onclick="sendEmail()">SEND</button>
-        </div>
-    </div>
-
-    <footer class="hud-footer">
-        <div class="stat-box"><span class="label">NODES</span><span class="value">4,021</span></div>
-        <div class="stat-box"><span class="label">OFFSET</span><span class="value">100%</span></div>
-        <div class="stat-box"><span class="label">LANGUAGES</span><span class="value">500+</span></div>
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 Climate Singularity Hyperverse. All Rights Reserved.</p>
+        <p style="font-size:0.8rem; color:#94a3b8; margin-top:10px;">Powered by Google Gemini & OpenWeatherMap</p>
     </footer>
 
+    <!-- SCRIPTS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // PWA Registration
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js').catch(err => console.log('SW Failed', err));
-            });
-        }
+        // --- API KEYS ---
+        const weatherKey = 'face30cd97a1b8feaaef06775dd83931';
+        const geminiKey = 'AIzaSyDESfOpoo5WBnshXTgBJEwOrrP64j23VBM';
 
-        // --- GLOBAL VARIABLES & API KEYS (SECURE) ---
-        let currentLang = 'en';
-        const weatherApiKey = 'face30cd97a1b8feaaef06775dd83931'; 
-        const geminiApiKey = 'AIzaSyDESfOpoo5WBnshXTgBJEwOrrP64j23VBM'; // YOUR REAL GEMINI KEY
-
-        // --- REAL AI CHATBOT LOGIC (GEMINI) ---
-        async function sendMessage() {
-            const input = document.getElementById('userMsg');
-            const text = input.value.trim();
-            if (!text) return;
-
-            addMessage(text, 'user-msg');
-            input.value = '';
-
-            // Add Loading State
-            const loadingDivId = addMessage("Analyzing global data...", 'bot-msg');
+        // --- 1. WEATHER LOGIC (Professional) ---
+        async function getWeather() {
+            const city = document.getElementById('cityInput').value;
+            if(!city) return alert("Please enter a city name.");
 
             try {
-                // Call Google Gemini API
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
+                const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${weatherKey}`);
+                if(!res.ok) throw new Error("City not found");
+                const data = await res.json();
+
+                // Update UI
+                document.getElementById('weather-placeholder').style.display = 'none';
+                document.getElementById('weatherResult').style.display = 'block';
+                
+                document.getElementById('cityName').innerText = data.name.toUpperCase();
+                document.getElementById('tempVal').innerText = Math.round(data.main.temp) + "°C";
+                document.getElementById('condition').innerText = data.weather[0].main;
+
+                // AI Insight Logic (Simple & Reliable)
+                let advice = "Conditions are normal.";
+                if(data.main.temp > 30) advice = "Heat Alert: Shield sensitive crops.";
+                if(data.weather[0].main.includes("Rain")) advice = "Rain Detected: Pause irrigation.";
+                document.getElementById('aiAdvice').innerText = advice;
+
+            } catch (err) {
+                alert("Could not find that city. Please try again.");
+            }
+        }
+
+        // --- 2. AI CHAT LOGIC (Robust) ---
+        async function sendAiMessage() {
+            const input = document.getElementById('userMsg');
+            const text = input.value.trim();
+            if(!text) return;
+
+            // UI Update
+            addChat(text, 'user');
+            input.value = '';
+            const loadingId = addChat("Thinking...", 'bot');
+
+            try {
+                // Call Google Gemini
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         contents: [{
-                            parts: [{
-                                text: `You are the 'Climate Oracle', an advanced AI for a project called 'Climate Singularity Hyperverse' in Nepal. 
-                                Keep answers short (max 60 words), professional, and focused on climate/agriculture/weather. 
-                                If asked about yourself, say you are a Neuro-Symbolic AI.
-                                User asks: ${text}`
-                            }]
+                            parts: [{ text: `You are a professional agricultural expert AI for Nepal. Answer briefly (max 50 words). Question: ${text}` }]
                         }]
                     })
                 });
 
-                const data = await response.json();
-                const aiReply = data.candidates[0].content.parts[0].text;
-
-                // Replace Loading with Real Answer
-                const loadingDiv = document.getElementById(loadingDivId);
-                loadingDiv.innerHTML = aiReply.replace(/\*\*/g, '<b>').replace(/\*/g, ''); // Basic Markdown formatting
+                const data = await res.json();
+                const reply = data.candidates[0].content.parts[0].text;
                 
-            } catch (error) {
-                document.getElementById(loadingDivId).innerText = "Error: Neural Link Interrupted. Please try again.";
+                // Update Chat
+                document.getElementById(loadingId).innerText = reply.replace(/\*/g, '');
+
+            } catch (err) {
+                document.getElementById(loadingId).innerText = "Connection Error. However: " + getBackupReply(text);
             }
         }
 
-        function addMessage(text, className) {
-            const body = document.getElementById('chatBody');
+        function addChat(text, type) {
+            const box = document.getElementById('chatBox');
             const div = document.createElement('div');
-            div.className = `message ${className}`;
+            div.className = `msg ${type}`;
             div.id = 'msg-' + Date.now();
-            div.innerHTML = text;
-            body.appendChild(div);
-            body.scrollTop = body.scrollHeight;
+            div.innerText = text;
+            box.appendChild(div);
+            box.scrollTop = box.scrollHeight;
             return div.id;
         }
 
-        // --- WEATHER LOGIC (With AI Insight) ---
-        async function getWeatherData() {
-            const city = document.getElementById('cityInput').value;
-            if(!city) { alert("Enter Location"); return; }
-            try {
-                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${weatherApiKey}`);
-                if (!response.ok) throw new Error("Failed");
-                const data = await response.json();
-                
-                document.getElementById('weatherDisplay').style.display = 'block';
-                document.getElementById('cityName').innerText = data.name.toUpperCase();
-                document.getElementById('temp').innerText = Math.round(data.main.temp) + "°C";
-                document.getElementById('humidity').innerText = data.main.humidity + "%";
-                document.getElementById('wind').innerText = data.wind.speed + " km/h";
-                document.getElementById('condition').innerText = data.weather[0].main.toUpperCase();
-                
-                // Simple Logic for the module (Chatbot does the heavy lifting)
-                let insight = (data.main.temp > 30) ? "High Heat Warning: Shield Crops." : "Conditions Normal.";
-                if(data.weather[0].main.includes("Rain")) insight = "Rain Alert: Irrigation Paused.";
-                document.getElementById('aiInsight').innerText = insight;
-                
-            } catch (error) { alert("City not found."); }
+        function handleEnter(e) { if(e.key === 'Enter') sendAiMessage(); }
+
+        // Backup Logic (If API fails)
+        function getBackupReply(text) {
+            if(text.includes('weather')) return "Please use the Weather Tool above.";
+            return "I am unable to connect to the cloud, but I recommend consulting a local expert.";
         }
 
-        // --- MAP LOGIC ---
-        function initMap() {
-            const map = L.map('map').setView([28.3949, 84.1240], 6);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
-            const greenIcon = L.divIcon({ className: 'custom-div-icon', html: "<div style='background-color:#00ff9d; width:10px; height:10px; border-radius:50%; box-shadow:0 0 10px #00ff9d;'></div>", iconSize: [10, 10], iconAnchor: [5, 5] });
-            const nodes = [{lat: 27.7172, lng: 85.3240, name: "Kathmandu HQ"}, {lat: 28.2096, lng: 83.9856, name: "Pokhara Node"}, {lat: 29.2995, lng: 82.1768, name: "Jumla Sensor"}];
-            nodes.forEach(node => { L.marker([node.lat, node.lng], {icon: greenIcon}).addTo(map).bindPopup(`<b>${node.name}</b><br>Status: ONLINE`); });
-        }
+        // --- 3. MAP LOGIC ---
+        const map = L.map('map').setView([28.3949, 84.1240], 7);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        L.marker([27.7172, 85.3240]).addTo(map).bindPopup("Kathmandu HQ").openPopup();
+        L.marker([28.2096, 83.9856]).addTo(map).bindPopup("Pokhara Node");
 
-        // --- UI & UTILS ---
-        const translations = {
-            en: { title: "SYMBIOTIC SINGULARITY", desc: "Deploying decentralized neuro-symbolic AI architecture...", role: "SYSTEM ARCHITECT", map: "Active Neural Nodes", mission: "The Hidden Mission", bot: "System Online. Ask me about Weather or Nepal." },
-            np: { title: "सिम्बायोटिक सिंगुलारिटी", desc: "हामी जलवायु परिवर्तनसँग जुध्न विकेन्द्रीकृत एआई आर्किटेक्चर प्रयोग गर्दैछौं...", role: "सिस्टम आर्किटेक्ट", map: "सक्रिय न्यूरल नोडहरू", mission: "हाम्रो लुकेको अभियान", bot: "नमस्ते। म असली एआई हुँ। के सोध्न चाहनुहुन्छ?" }
-        };
-
-        function toggleLanguage() {
-            currentLang = (currentLang === 'en') ? 'np' : 'en';
-            const t = translations[currentLang];
-            document.getElementById('mainTitle').innerText = t.title;
-            document.getElementById('mainDesc').innerText = t.desc;
-            document.getElementById('roleTitle').innerText = t.role;
-            document.getElementById('mapTitle').innerText = t.map;
-            document.getElementById('missionTitle').innerText = t.mission;
-            document.getElementById('botIntro').innerText = t.bot;
-            if(currentLang === 'np') document.body.classList.add('nepali-mode');
-            else document.body.classList.remove('nepali-mode');
-        }
-
-        function toggleThemePanel() {
-            const panel = document.getElementById('themePanel');
-            panel.style.display = (panel.style.display === 'flex') ? 'none' : 'flex';
-        }
-        function setTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            document.getElementById('themePanel').style.display = 'none';
-        }
-
-        function toggleChat() {
-            const win = document.getElementById('chatWindow');
-            win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
-            if(win.style.display === 'flex') document.getElementById('userMsg').focus();
-        }
-        function handleKeyPress(e) { if (e.key === 'Enter') sendMessage(); }
-
-        // Initialize
-        initMap();
-        
-        // Background Animation
-        const canvas = document.getElementById('neural-canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-        let particles = [];
-        class Particle {
-            constructor() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.vx = (Math.random()-0.5)*0.3; this.vy = (Math.random()-0.5)*0.3; this.size = Math.random()*2; }
-            update() { this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>canvas.width)this.vx*=-1; if(this.y<0||this.y>canvas.height)this.vy*=-1; }
-            draw() { ctx.fillStyle = 'rgba(0,243,255,0.5)'; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); }
-        }
-        function init() { particles=[]; for(let i=0; i<80; i++) particles.push(new Particle()); }
-        function animate() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(animate); }
-        init(); animate(); window.addEventListener('resize', ()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;init();});
-
-        // Modals
-        function openModal(title, text) { document.getElementById('modalTitle').innerText = title; document.getElementById('modalText').innerText = text; document.getElementById('infoModal').style.display = "block"; }
-        function closeModal() { document.getElementById('infoModal').style.display = "none"; }
-        window.onclick = function(e) { if(e.target == document.getElementById('infoModal')) closeModal(); }
-        function initiateProtocol() { document.getElementById('mission').scrollIntoView({behavior: 'smooth'}); }
-        function openContactModal() { document.getElementById('contactModal').style.display = 'block'; }
-        function closeContactModal() { document.getElementById('contactModal').style.display = 'none'; }
-
-        // Email JS (Placeholders)
-        emailjs.init("YOUR_PUBLIC_KEY"); 
-        function sendEmail() {
-            const sendButton = document.querySelector("#contactModal .btn-primary");
-            sendButton.innerText = "TRANSMITTING...";
-            setTimeout(() => { alert("Simulated: Transmission Sent."); closeContactModal(); sendButton.innerText = "SEND"; }, 1500);
-        }
-        /* --- JS END --- */
     </script>
 </body>
 </html>
